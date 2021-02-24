@@ -9,6 +9,7 @@ import SignIn from "./components/SignIn";
 import Navbar from "./components/Navbar";
 import SignUp from "./components/SignUp";
 import GymsList from "./components/GymsList";
+import ClassList from "./components/ClassList";
 function App() {
   return (
     <div className="App">
@@ -31,12 +32,14 @@ function App() {
         <SignUp />
       </Route>
       <Route exact path="/gyms">
-        {/* <Gymform /> */}
         <GymsList />
       </Route>
 
       <Route exact path="/gyms/:gymSlug/addclass">
         <ClassForm />
+      </Route>
+      <Route exact path="/classes">
+        <ClassList />
       </Route>
     </div>
   );
