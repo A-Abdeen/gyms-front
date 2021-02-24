@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import GymItem from "./GymItem";
 const GymsList = () => {
   const gyms = useSelector((state) => state.gymReducer.gyms);
-  const gymsList = gyms.map((gym) => <GymItem gym={gym} />);
+  const gymsList = gyms.map((gym) => <GymItem gym={gym} key={gym.id} />);
   return (
     <div className="container mt-5">
       <div className="row">

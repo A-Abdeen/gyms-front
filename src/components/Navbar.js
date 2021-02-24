@@ -34,7 +34,7 @@ const Navbar = () => {
                 Gyms
               </button>
             </NavLink>
-            <NavLink to="/">
+            <NavLink to="/classes">
               <button type="button" className="btn btn-outline-secondary me-3">
                 Classes
               </button>
