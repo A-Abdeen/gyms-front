@@ -1,23 +1,43 @@
 import logo from "./logo.svg";
 import "./App.css";
-
+import { Route, Switch } from "react-router";
+import Gymform from "./components/GymForm";
+import ClassForm from "./components/ClassForm";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SignIn from "./components/SignIn";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn
-        </a>
-      </header>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      <Route exact path="/signin">
+        <SignIn />
+      </Route>
+      <Route exact path="/signup"></Route>
+      <Route exact path="/gyms">
+        <Gymform />
+      </Route>
+
+      <Route
+        exact
+        path={[
+          "/gyms/:gymSlug/addclass",
+          // "/class",
+        ]}
+      >
+        <ClassForm />
+      </Route>
     </div>
   );
 }
