@@ -32,7 +32,6 @@ export const fetchClassTypes = () => {
 export const createClass = (newClass) => {
   return async (dispatch) => {
     try {
-      // http://localhost:8000/gyms/1/classes
       const res = await instance.post(
         `/gyms/${newClass.gymId}/classes`,
         newClass
@@ -40,6 +39,38 @@ export const createClass = (newClass) => {
       dispatch({
         type: types.CREATE_CLASS,
         payload: { newClass: res.data },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const bookClass = (userId, classId) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.put(`/classes/${classId}/book`, {
+        userId,
+      });
+      dispatch({
+        type: "UPDATE_CLASS",
+        payload: { updatedClass: res.data },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const cancelClass = (userId, classId) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.put(`/classes/${classId}/cancel`, {
+        userId,
+      });
+      dispatch({
+        type: "UPDATE_CLASS",
+        payload: { updatedClass: res.data },
       });
     } catch (error) {
       console.log(error);

@@ -1,6 +1,7 @@
 const initialState = {
   classes: [],
   types: [],
+  loading: true,
 };
 
 export const classReducer = (state = initialState, action) => {
@@ -9,6 +10,7 @@ export const classReducer = (state = initialState, action) => {
       return {
         ...state,
         classes: action.payload.classes,
+        loading: false,
       };
     case "FETCH_TYPES":
       return {
@@ -21,6 +23,16 @@ export const classReducer = (state = initialState, action) => {
         ...state,
         classes: [...state.classes, newClass],
       };
+
+    case "UPDATE_CLASS":
+      const updatedClass = action.payload;
+      return {
+        ...state,
+        classes: state.classes.map((_class) =>
+          _class.id === updatedClass.id ? updatedClass : _class
+        ),
+      };
+
     default:
       return state;
   }

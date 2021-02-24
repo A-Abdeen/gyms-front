@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar";
 import SignUp from "./components/SignUp";
 import GymsList from "./components/GymsList";
 import ClassList from "./components/ClassList";
+import ClassDetail from "./components/ClassDetail";
+
 function App() {
   return (
     <div className="App">
@@ -37,6 +39,9 @@ function App() {
 
       <Route exact path="/gyms/:gymSlug/addclass">
         <ClassForm />
+      </Route>
+      <Route path="/classes/:classSlug">
+        <ClassDetail />
       </Route>
       <Route exact path="/classes">
         <ClassList />
