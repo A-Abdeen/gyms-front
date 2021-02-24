@@ -1,6 +1,24 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { createClass } from "../store/actions/classActions";
 const ClassForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { gymSlug } = useParams();
+  const user = useSelector((state) => state.authReducer.user);
+  const types = useSelector((state) => state.classReducer.types);
+  const gyms = useSelector((state) => state.gymReducer.gyms);
+
+  const gym = gyms.find((_gym) => _gym.slug === gymSlug);
+
+  const typesList = types.map((type) => (
+    <option value={`${type.id}`}>{type.name}</option>
+  ));
+
   const [gymclass, setgymClass] = useState({
     name: "",
     numOfSeats: 0,
@@ -8,8 +26,12 @@ const ClassForm = () => {
     price: 0,
     date: "",
     time: "",
+    gymId: gym.id,
     typeId: "",
   });
+  if (!user || user.userType !== "admin") {
+    return <Redirect to="/" />;
+  }
   const handleChange = (event) =>
     setgymClass({
       ...gymclass,
@@ -23,11 +45,8 @@ const ClassForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(gymclass);
-    console.log(typeof gymclass.price);
-    // console.log(recipe.ingredients)
-    // dispatch(createRecipe(recipe));
-    // history.push("/recipes");
+    dispatch(createClass(gymclass));
+    history.push("/gyms");
   };
   return (
     <div className="container">
@@ -81,7 +100,7 @@ const ClassForm = () => {
             </div>
             <div className="input-group mb-3">
               <label className="input-group-text" htmlFor="inputGroupSelect01">
-                type
+                Class Type
               </label>
               <select
                 className="form-select"
@@ -93,8 +112,7 @@ const ClassForm = () => {
                 <option value="" selected>
                   Select Class Type
                 </option>
-                <option value="1">Weights</option>
-                <option value="2">Cardio</option>
+                {typesList}
               </select>
             </div>
             <div className="input-group mb-3">

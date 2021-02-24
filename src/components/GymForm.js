@@ -28,11 +28,11 @@ const Gymform = () => {
   return (
     <>
       <div className="container mt-5">
-        <h2>Add Gym</h2>
         <div className="row">
           <div className="col-3"></div>
           <div className="col-6">
             <form onSubmit={handleSubmit}>
+              <h2 className="mb-5">Add Gym</h2>
               <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1">
                   Name
@@ -40,7 +40,6 @@ const Gymform = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="name"
                   aria-label="name"
                   aria-describedby="basic-addon1"
                   name="name"
