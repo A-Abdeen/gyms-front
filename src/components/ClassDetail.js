@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import { GymImg } from "../styles";
 import { BsCalendar } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
+import Map from "./map/Map";
+
 const ClassDetail = () => {
   const { gymSlug, classSlug } = useParams();
   const dispatch = useDispatch();
@@ -86,52 +88,63 @@ const ClassDetail = () => {
       ? foundClass.time + " PM"
       : foundClass.time + " AM";
 
+  const location = {
+    address: foundGym.address,
+    lat: foundGym.lat,
+    lng: foundGym.lng,
+  };
+
   return (
-    <div
-      className="card border-secondary mt-3 ms-3"
-      style={{ "max-width": 540 + "px" }}
-    >
-      <div className="row g-0">
-        <div className="col-md-4">
-          <GymImg
-            src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1268&q=80"
-            alt="gymphoto"
-          />
-        </div>
-        <div className="col-md-8">
-          <div
-            className="card-body"
-            style={{ textAlign: "left", marginLeft: "95px" }}
-          >
-            <h5 className="card-title">{foundClass.name}</h5>
-            <p className="card-text">Location: {foundGym.name}</p>
-            <p className="card-text">
-              Seats Available:{" "}
-              {+foundClass.numOfSeats - +foundClass.bookedSeats}
-            </p>
-            <p className="card-text"> Capacity: {+foundClass.numOfSeats}</p>
-            <p className="card-text">
-              Price:{" "}
-              {foundClass.price === 0
-                ? "Free"
-                : "BHD " + foundClass.price.toFixed(2)}
-            </p>
-            <p className="card-text">
-              <BsCalendar size="1.3em" /> {displayDate}
-            </p>
-            <p className="card-text">
-              <BiTime size="1.3em" /> {displayTime}
-            </p>
-            <button
-              className={`btn btn-outline-${checkUser ? "danger" : "success"}`}
-              onClick={handleClick}
+    <>
+      <div
+        className="card border-secondary mt-3 ms-3"
+        style={{ "max-width": 540 + "px" }}
+      >
+        <div className="row g-0">
+          <div className="col-md-4">
+            <GymImg
+              src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1268&q=80"
+              alt="gymphoto"
+            />
+          </div>
+          <div className="col-md-8">
+            <div
+              className="card-body"
+              style={{ textAlign: "left", marginLeft: "95px" }}
             >
-              {checkUser ? "Cancel Booking" : "Book"}
-            </button>
+              <h5 className="card-title">{foundClass.name}</h5>
+              <p className="card-text">Location: {foundGym.name}</p>
+              <p className="card-text">
+                Seats Available:{" "}
+                {+foundClass.numOfSeats - +foundClass.bookedSeats}
+              </p>
+              <p className="card-text"> Capacity: {+foundClass.numOfSeats}</p>
+              <p className="card-text">
+                Price:{" "}
+                {foundClass.price === 0
+                  ? "Free"
+                  : "BHD " + foundClass.price.toFixed(2)}
+              </p>
+              <p className="card-text">
+                <BsCalendar size="1.3em" /> {displayDate}
+              </p>
+              <p className="card-text">
+                <BiTime size="1.3em" /> {displayTime}
+              </p>
+              <button
+                className={`btn btn-outline-${
+                  checkUser ? "danger" : "success"
+                }`}
+                onClick={handleClick}
+              >
+                {checkUser ? "Cancel Booking" : "Book"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Map location={location} name={foundGym.name} />
+    </>
   );
 };
 

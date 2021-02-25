@@ -9,7 +9,7 @@ import RangeBar from "./RangeBar";
 import { CheckBox } from "./CheckBox";
 import Loading from "./Loading";
 import { BiFilterAlt } from "react-icons/bi";
-
+import Map from "./map/Map";
 const ClassList = () => {
   const types = useSelector((state) => state.classReducer.types);
   const classes = useSelector((state) => state.classReducer.classes);

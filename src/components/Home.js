@@ -1,5 +1,5 @@
 import React from "react";
-
+import Map from "./map/Map";
 const Home = () => {
   return (
     <div class="row" style={{ backgroundColor: "lightgrey" }}>
