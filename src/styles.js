@@ -1,5 +1,15 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { NavLink } from "react-router-dom";
+
+export const GlobalStyle = createGlobalStyle`
+body{
+  background-color: #f1f3f5;
+}
+`;
+export const Navtitle = styled.a`
+  color: #f8f9fa;
+  font-size: 23px;
+`;
 export const UserForm = styled.form`
   //   width: 500px;
   padding: 56px;
@@ -12,6 +22,19 @@ export const UserForm = styled.form`
   text-align: center;
   //   transition: 0.25s;
   //   margin-top: 100px;
+`;
+
+export const Carousel = styled.div`
+  .carousel .item {
+    height: 300px;
+  }
+
+  .item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 300px;
+  }
 `;
 export const GymImg = styled.img`
   width: 280px;

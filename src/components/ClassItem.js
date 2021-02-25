@@ -7,7 +7,7 @@ const ClassItem = ({ classitem }) => {
   const user = useSelector((state) => state.authReducer.user);
   return (
     <>
-      <a class="list-group-item list-group-item-action" aria-current="true">
+      <a class="list-group-item list-group-item-light" aria-current="true">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{classitem.name}</h5>
 

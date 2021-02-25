@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Route, Switch } from "react-router";
-import Gymform from "./components/GymForm";
+import { GlobalStyle } from "./styles";
 import ClassForm from "./components/ClassForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +12,7 @@ import GymsList from "./components/GymsList";
 import ClassList from "./components/ClassList";
 import ClassDetail from "./components/ClassDetail";
 import GuestClassDetail from "./components/GuestClassDetail";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         pauseOnHover
       />
       <Navbar />
+      <GlobalStyle />
       <Route exact path="/signin">
         <SignIn />
       </Route>
@@ -49,6 +51,9 @@ function App() {
       </Route>
       <Route exact path="/classes">
         <ClassList />
+      </Route>
+      <Route exact path="/">
+        <Home />
       </Route>
     </div>
   );

@@ -61,7 +61,7 @@ const ClassList = () => {
             </button>
           </div>
           <div className="col-8">
-            <div class="list-group">{typesList}</div>
+            <div class="list-group mb-5">{typesList}</div>
           </div>
           <div className="col-2"></div>
         </div>
