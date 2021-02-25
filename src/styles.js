@@ -13,7 +13,15 @@ export const UserForm = styled.form`
   //   transition: 0.25s;
   //   margin-top: 100px;
 `;
+export const GymImg = styled.img`
+  width: 280px;
+  height: 305px;
+`;
 
+export const CardBody = styled.div`
+  text-align: left;
+  margin-left:: 95px;
+`;
 export const NavList = styled(NavLink)`
   font-size: 25px;
   margin-top: 15px;
