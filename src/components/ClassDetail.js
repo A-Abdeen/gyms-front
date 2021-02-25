@@ -9,14 +9,16 @@ import { GymImg } from "../styles";
 import { BsCalendar } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
 const ClassDetail = () => {
-  const { classSlug } = useParams();
+  const { gymSlug, classSlug } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useSelector((state) => state.classReducer.classes);
   const user = useSelector((state) => state.authReducer.user);
+  const gyms = useSelector((state) => state.gymReducer.gyms);
   const loading = useSelector((state) => state.classReducer.loading);
   if (loading) return <Loading />;
   if (!user) return <Redirect to="/" />;
+  const foundGym = gyms.find((gym) => gym.slug === gymSlug);
   const foundClass = classes.find((_class) => _class.slug == classSlug);
   let checkUser = foundClass.users.some((_user) => _user.id === user.id);
   let floatTime =
@@ -74,6 +76,16 @@ const ClassDetail = () => {
         progress: undefined,
       }
     );
+
+  const displayDate = foundClass.date.split("-").reverse().join("-");
+  let splitTime = foundClass.time.split(":");
+  const displayTime =
+    +splitTime[0] > 12
+      ? `${splitTime[0] - 12}:${splitTime[1]} PM`
+      : +splitTime[0] == 12
+      ? foundClass.time + " PM"
+      : foundClass.time + " AM";
+
   return (
     <div
       className="card border-secondary mt-3 ms-3"
@@ -92,21 +104,23 @@ const ClassDetail = () => {
             style={{ textAlign: "left", marginLeft: "95px" }}
           >
             <h5 className="card-title">{foundClass.name}</h5>
+            <p className="card-text">Location: {foundGym.name}</p>
             <p className="card-text">
               Seats Available:{" "}
               {+foundClass.numOfSeats - +foundClass.bookedSeats}
             </p>
             <p className="card-text"> Capacity: {+foundClass.numOfSeats}</p>
             <p className="card-text">
-              {" "}
-              Price: {foundClass.price === 0 ? "Free" : foundClass.price}{" "}
+              Price:{" "}
+              {foundClass.price === 0
+                ? "Free"
+                : "BHD " + foundClass.price.toFixed(2)}
             </p>
             <p className="card-text">
-              {" "}
-              <BsCalendar size="1.3em" /> {foundClass.date}{" "}
+              <BsCalendar size="1.3em" /> {displayDate}
             </p>
             <p className="card-text">
-              <BiTime size="1.3em" /> {foundClass.time}
+              <BiTime size="1.3em" /> {displayTime}
             </p>
             <button
               className={`btn btn-outline-${checkUser ? "danger" : "success"}`}

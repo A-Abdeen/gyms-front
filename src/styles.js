@@ -38,7 +38,7 @@ export const Carousel = styled.div`
 `;
 export const GymImg = styled.img`
   width: 280px;
-  height: 305px;
+  height: 345px;
 `;
 
 export const CardBody = styled.div`
@@ -74,4 +74,14 @@ export const SearchBarStyled = styled.input`
   margin: 1rem auto;
   display: block;
   width: 40%;
+`;
+
+export const Error = styled.p`
+  color: red;
+`;
+
+export const Subheading = styled.p`
+text-align: center,
+color: blue,
+margin-top: 200px,
 `;

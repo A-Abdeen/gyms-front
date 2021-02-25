@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { createGym } from "../store/actions/gymActions";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-const Gymform = () => {
+const GymForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
@@ -63,4 +63,4 @@ const Gymform = () => {
   );
 };
 
-export default Gymform;
+export default GymForm;

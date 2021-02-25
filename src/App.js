@@ -13,6 +13,8 @@ import ClassList from "./components/ClassList";
 import ClassDetail from "./components/ClassDetail";
 import GuestClassDetail from "./components/GuestClassDetail";
 import Home from "./components/Home";
+import GymForm from "./components/GymForm";
+import BookedList from "./components/BookedList";
 
 function App() {
   return (
@@ -39,18 +41,23 @@ function App() {
       <Route exact path="/gyms">
         <GymsList />
       </Route>
-
+      <Route exact path="/gyms/addgym">
+        <GymForm />
+      </Route>
       <Route exact path="/gyms/:gymSlug/addclass">
         <ClassForm />
       </Route>
-      <Route exact path="/guest/classes/:classSlug">
+      <Route exact path="/guest/:gymSlug/classes/:classSlug">
         <GuestClassDetail />
       </Route>
-      <Route path="/classes/:classSlug">
+      <Route path="/:gymSlug/classes/:classSlug">
         <ClassDetail />
       </Route>
       <Route exact path="/classes">
         <ClassList />
+      </Route>
+      <Route exact path="/myclasses">
+        <BookedList />
       </Route>
       <Route exact path="/">
         <Home />

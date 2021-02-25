@@ -43,25 +43,29 @@ const Navbar = () => {
               true
             )}
 
-            <NavLink to="/classes">
-              <button type="button" className="btn btn-outline-light me-3">
-                Classes
-              </button>
-            </NavLink>
+            {user && (
+              <NavLink to="/classes">
+                <button type="button" className="btn btn-outline-light me-3">
+                  Classes
+                </button>
+              </NavLink>
+            )}
             {user ? (
               <>
-                <div style={{ paddingTop: "10px" }}>
-                  <p
-                    style={{
-                      marginLeft: "5px",
-                      marginRight: "20px",
-                      color: "#f8f9fa",
-                    }}
-                  >
-                    {" "}
-                    Hi, {user.username}
-                  </p>
-                </div>
+                <NavLink to="/myclasses">
+                  <div style={{ paddingTop: "10px" }}>
+                    <p
+                      style={{
+                        marginLeft: "5px",
+                        marginRight: "20px",
+                        color: "#f8f9fa",
+                      }}
+                    >
+                      {" "}
+                      Hi, {user.username}
+                    </p>
+                  </div>
+                </NavLink>
                 <div style={{ marginTop: "7px" }}>
                   {" "}
                   <HiOutlineLogout

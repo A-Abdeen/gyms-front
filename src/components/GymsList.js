@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import GymItem from "./GymItem";
 import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 const GymsList = () => {
   const user = useSelector((state) => state.authReducer.user);
   const gyms = useSelector((state) => state.gymReducer.gyms);
@@ -16,6 +17,11 @@ const GymsList = () => {
         <div className="col-4"></div>
         <div className="col-4">
           <ul className="list-group">{gymsList}</ul>
+          <ul className="list-group">
+            <Link to={`/gyms/addgym`}>
+              <button className="btn btn-outline-secondary">Add Gym</button>
+            </Link>
+          </ul>
         </div>
         <div className="col-4"></div>
       </div>

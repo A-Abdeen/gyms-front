@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import ClassItem from "./ClassItem";
 const ClassType = ({ type, query, date, value, free }) => {
   const today = new Date().toISOString().slice(0, 10);
+  const user = useSelector((state) => state.authReducer.user);
   let classes = useSelector((state) => state.classReducer.classes);
+
   if (date) {
     classes =
       date == 1
@@ -40,10 +42,14 @@ const ClassType = ({ type, query, date, value, free }) => {
   if (free) classes = classes.filter((_class) => +_class.price === 0);
 
   const classList = classes
-    .filter((_class) => _class.typeId === type.id)
+    .filter(
+      (_class) =>
+        _class.typeId === type.id && _class.numOfSeats > _class.bookedSeats
+    )
     .map((elem) => {
       return <ClassItem classitem={elem} key={elem.id} />;
     });
+
   return (
     <>
       <h5 style={{ textAlign: "left" }}>{type.name}</h5>
