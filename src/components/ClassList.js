@@ -7,7 +7,7 @@ import { useState } from "react";
 import DateQuery from "./DateQuery";
 import RangeBar from "./RangeBar";
 import { CheckBox } from "./CheckBox";
-
+import Loading from "./Loading";
 const ClassList = () => {
   const types = useSelector((state) => state.classReducer.types);
   const classes = useSelector((state) => state.classReducer.classes);
@@ -15,7 +15,8 @@ const ClassList = () => {
   const [date, setDate] = useState(null);
   const [value, setValue] = useState(null);
   const [free, setFree] = useState(false);
-
+  const loading = useSelector((state) => state.classReducer.loading);
+  if (loading) return <Loading />;
   const handleClick = () => {
     setDate(null);
     setQuery(null);

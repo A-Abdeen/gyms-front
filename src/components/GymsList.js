@@ -1,8 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import GymItem from "./GymItem";
+import { Redirect } from "react-router-dom";
 const GymsList = () => {
+  const user = useSelector((state) => state.authReducer.user);
   const gyms = useSelector((state) => state.gymReducer.gyms);
+  if (!user || user.userType !== "admin") {
+    return <Redirect to="/" />;
+  }
   const gymsList = gyms.map((gym) => <GymItem gym={gym} key={gym.id} />);
   return (
     <div className="container mt-5">

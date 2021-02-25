@@ -18,14 +18,14 @@ export const classReducer = (state = initialState, action) => {
         types: action.payload.types,
       };
     case "CREATE_CLASS":
-      let newClass = action.payload.newClass;
+      let newClass = { ...action.payload.newClass, users: [] };
       return {
         ...state,
         classes: [...state.classes, newClass],
       };
 
     case "UPDATE_CLASS":
-      const updatedClass = action.payload;
+      const updatedClass = action.payload.updatedClass;
       return {
         ...state,
         classes: state.classes.map((_class) =>

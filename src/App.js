@@ -11,12 +11,13 @@ import SignUp from "./components/SignUp";
 import GymsList from "./components/GymsList";
 import ClassList from "./components/ClassList";
 import ClassDetail from "./components/ClassDetail";
+import GuestClassDetail from "./components/GuestClassDetail";
 
 function App() {
   return (
     <div className="App">
       <ToastContainer
-        position="bottom-right"
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -39,6 +40,9 @@ function App() {
 
       <Route exact path="/gyms/:gymSlug/addclass">
         <ClassForm />
+      </Route>
+      <Route exact path="/guest/classes/:classSlug">
+        <GuestClassDetail />
       </Route>
       <Route path="/classes/:classSlug">
         <ClassDetail />

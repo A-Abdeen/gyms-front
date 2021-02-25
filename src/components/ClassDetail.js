@@ -1,18 +1,19 @@
 import { ListWrapper } from "../styles";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Link, Redirect, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "./Loading";
 import { bookClass, cancelClass } from "../store/actions/classActions";
 import { useState } from "react";
-
+import { toast } from "react-toastify";
 const ClassDetail = () => {
   const { classSlug } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useSelector((state) => state.classReducer.classes);
   const user = useSelector((state) => state.authReducer.user);
   const loading = useSelector((state) => state.classReducer.loading);
   if (loading) return <Loading />;
-
+  if (!user) return <Redirect to="/" />;
   const foundClass = classes.find((_class) => _class.slug == classSlug);
   let checkUser = foundClass.users.some((_user) => _user.id === user.id);
   let floatTime =
@@ -36,16 +37,40 @@ const ClassDetail = () => {
             _class.date === foundClass.date && _class.time === foundClass.time
         ))
     )
-      console.log("cannot book");
-    else if (!checkTime && checkUser) console.log("cannot cancel");
+      bookmsg();
+    else if (!checkTime && checkUser) cancelmsg();
     else {
       dispatch(
         checkUser
           ? cancelClass(user.id, foundClass.id)
           : bookClass(user.id, foundClass.id)
       );
+      // history.replace("/classes");
     }
   };
+  const cancelmsg = () =>
+    toast.warn("Cannot cancel, class already started", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const bookmsg = () =>
+    toast.warn(
+      "Cannot book more than three classes per day or at the same time",
+      {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
   return (
     <div className="card mb-3" style={{ "max-width": 540 + "px" }}>
       <div className="row g-0">

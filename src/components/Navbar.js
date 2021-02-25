@@ -29,11 +29,19 @@ const Navbar = () => {
                 Home
               </button>
             </NavLink>
-            <NavLink to="/gyms">
-              <button type="button" className="btn btn-outline-secondary me-3">
-                Gyms
-              </button>
-            </NavLink>
+            {user && user.userType === "admin" ? (
+              <NavLink to="/gyms">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary me-3"
+                >
+                  Gyms
+                </button>
+              </NavLink>
+            ) : (
+              true
+            )}
+
             <NavLink to="/classes">
               <button type="button" className="btn btn-outline-secondary me-3">
                 Classes

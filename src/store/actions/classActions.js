@@ -1,6 +1,6 @@
 import instance from "./instance";
 import * as types from "./types";
-
+import { toast } from "react-toastify";
 export const fetchClass = () => {
   return async (dispatch) => {
     try {
@@ -56,6 +56,15 @@ export const bookClass = (userId, classId) => {
         type: "UPDATE_CLASS",
         payload: { updatedClass: res.data },
       });
+      toast.success("Successfully Booked", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -71,6 +80,15 @@ export const cancelClass = (userId, classId) => {
       dispatch({
         type: "UPDATE_CLASS",
         payload: { updatedClass: res.data },
+      });
+      toast.error("Booking cancelled !!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
     } catch (error) {
       console.log(error);
