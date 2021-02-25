@@ -105,11 +105,11 @@ const SignUp = () => {
                   onChange={handleChange}
                   value={user.password}
                   name="password"
-                  // ref={register({
-                  //   required: true,
-                  //   pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
-                  //   minLength: 8,
-                  // })}
+                  ref={register({
+                    required: true,
+                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
+                    minLength: 8,
+                  })}
                 />
                 <span class="input-group-text" id="basic-addon2">
                   {pass === "password" ? (
@@ -119,7 +119,7 @@ const SignUp = () => {
                   )}
                 </span>
               </div>
-              {/* {errors.password && (
+              {errors.password && (
                 <p> Please include the following in your password: </p>
               )}
               {errors.password && !user.password.match(/^(?=.*[a-z])/g) && (
@@ -139,7 +139,7 @@ const SignUp = () => {
               )}
               {errors.password && user.password.includes(user.username) && (
                 <Error> Password must not contain your username </Error>
-              )} */}
+              )}
               <div class="input-group mb-3">
                 <input
                   type="email"
