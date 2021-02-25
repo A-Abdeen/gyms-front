@@ -35,17 +35,21 @@ const ClassDetail = () => {
 
   const handleClick = () => {
     if (
-      (!checkUser &&
-        userClasses.some((_class) => _class.date === foundClass.date).length >=
-          3) ||
-      (!checkUser &&
-        userClasses.some(
-          (_class) =>
-            _class.date === foundClass.date && _class.time === foundClass.time
-        ))
+      !checkUser &&
+      userClasses.some(
+        (_class) =>
+          _class.date === foundClass.date && _class.time === foundClass.time
+      )
+    )
+      bookmsg2();
+    if (
+      !checkUser &&
+      userClasses.filter((_class) => _class.date === foundClass.date).length >=
+        3
     )
       bookmsg();
     else if (!checkTime && checkUser) cancelmsg();
+    else if (!checkTime) cancelmsg2();
     else {
       dispatch(
         checkUser
@@ -65,19 +69,36 @@ const ClassDetail = () => {
       draggable: true,
       progress: undefined,
     });
+  const cancelmsg2 = () =>
+    toast.warn("Cannot book, class already started", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   const bookmsg = () =>
-    toast.warn(
-      "Cannot book more than three classes per day or at the same time",
-      {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
-    );
+    toast.warn("Cannot book more than three classes per day", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const bookmsg2 = () =>
+    toast.warn("Cannot book more than one class at the same time", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const displayDate = foundClass.date.split("-").reverse().join("-");
   let splitTime = foundClass.time.split(":");
