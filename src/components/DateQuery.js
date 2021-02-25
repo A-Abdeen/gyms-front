@@ -7,7 +7,7 @@ const DateQuery = ({ setDate, date }) => {
     setDate(event.target.value);
   };
   return (
-    <div>
+    <div className="mb-4">
       <input
         type="radio"
         className="btn-check"
@@ -17,7 +17,7 @@ const DateQuery = ({ setDate, date }) => {
         checked={!date}
         onClick={handleClick}
       />
-      <label className="btn btn-primary" for="option5">
+      <label className="btn btn-outline-primary" for="option5">
         Show All
       </label>
 
@@ -30,7 +30,7 @@ const DateQuery = ({ setDate, date }) => {
         value={1}
         onClick={handleClick}
       />
-      <label className="btn btn-secondary" for="option1">
+      <label className="btn btn-outline-secondary" for="option1">
         Today
       </label>
 
@@ -43,7 +43,7 @@ const DateQuery = ({ setDate, date }) => {
         value={2}
         onClick={handleClick}
       />
-      <label className="btn btn-secondary" for="option2">
+      <label className="btn btn-outline-secondary" for="option2">
         Next 2 days
       </label>
 
@@ -56,7 +56,7 @@ const DateQuery = ({ setDate, date }) => {
         value={3}
         onClick={handleClick}
       />
-      <label className="btn btn-secondary" for="option3">
+      <label className="btn btn-outline-secondary" for="option3">
         Next 3 days
       </label>
 
@@ -69,7 +69,7 @@ const DateQuery = ({ setDate, date }) => {
         value={7}
         onClick={handleClick}
       />
-      <label className="btn btn-secondary" for="option4">
+      <label className="btn btn-outline-secondary" for="option4">
         Next week
       </label>
     </div>

@@ -46,7 +46,7 @@ const ClassType = ({ type, query, date, value, free }) => {
     });
   return (
     <>
-      <h5>{type.name}</h5>
+      <h5 style={{ textAlign: "left" }}>{type.name}</h5>
       {classList}
     </>
   );

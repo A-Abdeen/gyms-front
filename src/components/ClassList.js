@@ -8,6 +8,8 @@ import DateQuery from "./DateQuery";
 import RangeBar from "./RangeBar";
 import { CheckBox } from "./CheckBox";
 import Loading from "./Loading";
+import { BiFilterAlt } from "react-icons/bi";
+
 const ClassList = () => {
   const types = useSelector((state) => state.classReducer.types);
   const classes = useSelector((state) => state.classReducer.classes);
@@ -38,17 +40,28 @@ const ClassList = () => {
 
   return (
     <div>
-      <h1>Class List</h1>
       <div className="container mt-5">
-        <button onClick={handleClick}> Reset Filters </button>
+        <h2>Classes</h2>
         <SearchBar setQuery={setQuery} />
         <DateQuery setDate={setDate} date={date} />
-        <RangeBar setValue={setValue} value={value} />
-        <CheckBox setFree={setFree} free={free} />
         <div className="row">
-          <div className="col-2"></div>
+          <div className="col-2">
+            <h5 className="mb-3 mt-2" style={{ textAlign: "left" }}>
+              <BiFilterAlt /> Filters:
+            </h5>
+
+            <RangeBar setValue={setValue} value={value} />
+
+            <CheckBox setFree={setFree} free={free} />
+            <button
+              className="btn btn-outline-secondary mt-3"
+              onClick={handleClick}
+            >
+              Reset Filters
+            </button>
+          </div>
           <div className="col-8">
-            <ul className="list-group">{typesList}</ul>
+            <div class="list-group">{typesList}</div>
           </div>
           <div className="col-2"></div>
         </div>

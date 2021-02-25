@@ -1,6 +1,6 @@
 export const CheckBox = ({ free, setFree }) => {
   return (
-    <div class="form-check">
+    <div class="form-check mt-4">
       <input
         class="form-check-input"
         type="checkbox"

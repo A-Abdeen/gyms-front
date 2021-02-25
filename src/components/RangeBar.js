@@ -1,12 +1,15 @@
 const RangeBar = ({ setValue, value }) => {
   return (
     <div>
-      <label for="customRange3" class="form-label">
+      <label
+        for="customRange3"
+        className="form-label d-flex justify-content-start"
+      >
         Class Times
       </label>
       <input
         type="range"
-        class="form-range"
+        className="form-range"
         min="10"
         max="20"
         step="2"
